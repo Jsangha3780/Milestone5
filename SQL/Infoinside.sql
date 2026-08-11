@@ -15,3 +15,7 @@ INSERT INTO event_registrations (event_id, user_id)
 VALUES
 (1, 1),
 (2, 2);
+USE college_events;
+
+ALTER TABLE users
+ADD COLUMN password VARCHAR(255) NOT NULL AFTER email;

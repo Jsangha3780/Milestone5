@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 
@@ -5,6 +6,8 @@ import userRoutes from "./routes/userRoutes";
 import eventRoutes from "./routes/eventRoutes";
 import registrationRoutes from "./routes/registrationRoutes";
 import collegeRoutes from "./routes/collegeroute";
+
+dotenv.config();
 
 const app = express();
 

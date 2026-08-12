@@ -2,12 +2,9 @@ import { Router, Request, Response } from "express";
 import pool from "../db";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
 
 import { checkToken } from "../middleware/authMiddleware";
 import loginLimiter from "../middleware/rateLimiter";
-
-dotenv.config();
 
 const router = Router();
 

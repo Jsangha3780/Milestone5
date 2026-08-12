@@ -11,10 +11,15 @@ router.get("/", async (_req: Request, res: Response) => {
 
 // GET one registration
 router.get("/:id", async (req: Request, res: Response) => {
-  const [rows]: any = await pool.query("SELECT * FROM event_registrations WHERE registration_id = ? = ?", [req.params.id]);
+  const [rows]: any = await pool.query(
+    "SELECT * FROM event_registrations WHERE registration_id = ?",
+    [req.params.id]
+  );
+
   if (!rows || rows.length === 0) {
     return res.status(404).json({ message: `Registration ${req.params.id} not found` });
   }
+
   res.json(rows[0]);
 });
 

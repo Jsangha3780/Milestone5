@@ -1,5 +1,8 @@
 
 const dotenv = require("dotenv");
+// Load environment variables from .env immediately
+dotenv.config();
+
 import express from "express";
 import cors from "cors";
 
@@ -7,9 +10,6 @@ import userRoutes from "./routes/userRoutes";
 import eventRoutes from "./routes/eventRoutes";
 import registrationRoutes from "./routes/registrationRoutes";
 import collegeRoutes from "./routes/collegeroute";
-
-// Load environment variables from .env
-dotenv.config();
 
 const app = express();
 const PORT = 3000;

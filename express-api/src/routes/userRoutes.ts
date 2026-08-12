@@ -255,6 +255,13 @@ router.patch(
 
       const userId = req.params.id;
 
+      // Only allow the logged-in user to update their own profile
+      if (!req.user || req.user.user_id.toString() !== userId) {
+        return res.status(403).json({
+          message: "Forbidden: you can only update your own user account"
+        });
+      }
+
       // Find existing user
       const [existingRows]: any = await pool.query(
         "SELECT * FROM users WHERE user_id = ?",
@@ -316,19 +323,28 @@ router.delete(
   async (req: Request, res: Response) => {
 
     try {
+      const userId = req.params.id;
+
+      // Only allow the logged-in user to delete their own profile
+      if (!req.user || req.user.user_id.toString() !== userId) {
+        return res.status(403).json({
+          message: "Forbidden: you can only delete your own user account"
+        });
+      }
+
       const [result]: any = await pool.query(
         "DELETE FROM users WHERE user_id = ?",
-        [req.params.id]
+        [userId]
       );
 
       if (result.affectedRows === 0) {
         return res.status(404).json({
-          message: `User ${req.params.id} not found`
+          message: `User ${userId} not found`
         });
       }
 
       res.json({
-        message: `User ${req.params.id} deleted`
+        message: `User ${userId} deleted`
       });
 
     } catch (error) {

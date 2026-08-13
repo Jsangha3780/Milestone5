@@ -1,88 +1,88 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
+import "./LoginPage.css";
 
 interface LoginPageProps {
   onLogin: (token: string) => void;
 }
+
 function LoginPage({ onLogin }: LoginPageProps) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setError('');
+    setError("");
 
     try {
-      // Send login request to the Express API
-      const response = await fetch('/api/users/login', {
-        method: 'POST',
+      const response = await fetch("/api/users/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
+        body: JSON.stringify({ email, password }),
       });
 
       const result = await response.json();
 
-      // Display backend error message
       if (!response.ok) {
-        setError(result.message || 'Login failed');
+        setError(result.message || "Login failed");
         return;
       }
 
-      // Save JWT token through App.tsx
       if (result.token) {
         onLogin(result.token);
       } else {
-        setError('Login succeeded but no token was returned');
+        setError("Login succeeded but no token was returned");
       }
     } catch {
-      setError('Unable to connect to the server');
+      setError("Unable to connect to the server");
     }
   };
 
   return (
-    <main className="auth-screen">
-      <h1>Login</h1>
+    <div className="login-page">
 
-      <form onSubmit={handleSubmit} className="auth-form">
-        <label>
-          Email
+      {/* Header */}
+      <section className="login-header">
+        <h1>Login</h1>
+        <p>Access your account to manage campus events.</p>
+      </section>
 
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
-          />
-        </label>
+      {/* Login Card */}
+      <section className="login-card">
+        <form onSubmit={handleSubmit} className="login-form">
 
-        <label>
-          Password
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+          </div>
 
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
-          />
-        </label>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+            />
+          </div>
 
-        <button type="submit">
-          Login
-        </button>
+          <button className="primary-button" type="submit">
+            Login
+          </button>
 
-        {error && (
-          <p className="error">
-            {error}
-          </p>
-        )}
-      </form>
-    </main>
+          {error && <p className="login-error">{error}</p>}
+        </form>
+      </section>
+
+    </div>
   );
 }
 

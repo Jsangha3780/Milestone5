@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import "./EventList.css";
 
-// Defines the structure of an event
 interface Event {
   event_id: number;
   college_id: number;
@@ -8,33 +8,23 @@ interface Event {
 }
 
 function EventList() {
-  // Stores the events returned from the API
   const [events, setEvents] = useState<Event[]>([]);
-
-  // Shows loading message while API request is running
   const [loading, setLoading] = useState(true);
-
-  // Stores any error message
   const [message, setMessage] = useState("");
 
-  // Gets events from the Express API
   const fetchEvents = async () => {
     try {
       setLoading(true);
       setMessage("");
 
-      // Vite proxy sends this request to localhost:3000
       const response = await fetch("/api/events");
-
       const data = await response.json();
 
-      // Check if the API returned an error
       if (!response.ok) {
         setMessage(data.message || "Could not get events");
         return;
       }
 
-      // Save events in state
       setEvents(data);
     } catch (error) {
       console.error(error);
@@ -44,43 +34,41 @@ function EventList() {
     }
   };
 
-  // Fetch events when the component loads
   useEffect(() => {
     fetchEvents();
   }, []);
 
   return (
-    <section>
-      <h2>Campus Events</h2>
+    <div className="event-page">
 
-      {/* Show loading message */}
-      {loading && <p>Loading events...</p>}
+      {/* Header */}
+      <section className="event-header">
+        <h1>Campus Events</h1>
+        <p>Browse all upcoming events happening across campus.</p>
+      </section>
 
-      {/* Show error message */}
-      {message && <p>{message}</p>}
+      {/* Event List */}
+      <section className="event-list-section">
+        {loading && <p className="status">Loading events...</p>}
+        {message && <p className="status error">{message}</p>}
 
-      {/* Show message when there are no events */}
-      {!loading && events.length === 0 && !message && (
-        <p>No events found.</p>
-      )}
+        {!loading && events.length === 0 && !message && (
+          <p className="status">No events found.</p>
+        )}
 
-      {/* Display events */}
-      {events.length > 0 && (
-        <div>
-          {events.map((event) => (
-            <div key={event.event_id}>
-              <h3>{event.title}</h3>
+        {events.length > 0 && (
+          <ul className="event-grid">
+            {events.map((event) => (
+              <li key={event.event_id} className="event-card">
+                <h3>{event.title}</h3>
+                <p>College ID: {event.college_id}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
 
-              <p>
-                College ID: {event.college_id}
-              </p>
-
-              <hr />
-            </div>
-          ))}
-        </div>
-      )}
-    </section>
+    </div>
   );
 }
 

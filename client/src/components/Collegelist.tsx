@@ -1,40 +1,30 @@
 import { useEffect, useState } from "react";
+import "./Collegelist.css";
 
-// Defines the structure of a college
 interface College {
   college_id: number;
   name: string;
   created_at?: string;
 }
 
-function CollegeList() {
-  // Stores colleges returned from the API
+function Collegelist() {
   const [colleges, setColleges] = useState<College[]>([]);
-
-  // Shows loading state while fetching data
   const [loading, setLoading] = useState(true);
-
-  // Stores error messages
   const [message, setMessage] = useState("");
 
-  // Fetch colleges from the Express API
   const fetchColleges = async () => {
     try {
       setLoading(true);
       setMessage("");
 
-      // Vite proxy forwards this to Express on port 3000
       const response = await fetch("/api/colleges");
-
       const data = await response.json();
 
-      // Check if the API returned an error
       if (!response.ok) {
         setMessage(data.message || "Could not get colleges");
         return;
       }
 
-      // Store the colleges
       setColleges(data);
     } catch (error) {
       console.error(error);
@@ -44,38 +34,41 @@ function CollegeList() {
     }
   };
 
-  // Fetch colleges when the component loads
   useEffect(() => {
     fetchColleges();
   }, []);
 
   return (
-    <section>
-      <h2>Colleges</h2>
+    <div className="college-page">
 
-      {/* Loading message */}
-      {loading && <p>Loading colleges...</p>}
+      {/* Header */}
+      <section className="college-header">
+        <h1>Colleges</h1>
+        <p>Browse all colleges participating in campus events.</p>
+      </section>
 
-      {/* Error message */}
-      {message && <p>{message}</p>}
+      {/* List Section */}
+      <section className="college-list-section">
+        {loading && <p className="status">Loading colleges...</p>}
+        {message && <p className="status error">{message}</p>}
 
-      {/* No colleges found */}
-      {!loading && colleges.length === 0 && !message && (
-        <p>No colleges found.</p>
-      )}
+        {!loading && colleges.length === 0 && !message && (
+          <p className="status">No colleges found.</p>
+        )}
 
-      {/* Display colleges */}
-      {colleges.length > 0 && (
-        <ul>
-          {colleges.map((college) => (
-            <li key={college.college_id}>
-              <strong>{college.name}</strong>
-            </li>
-          ))}
-        </ul>
-      )}
-    </section>
+        {colleges.length > 0 && (
+          <ul className="college-grid">
+            {colleges.map((college) => (
+              <li key={college.college_id} className="college-card">
+                <strong>{college.name}</strong>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+    </div>
   );
 }
 
-export default CollegeList;
+export default Collegelist;

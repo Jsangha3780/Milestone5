@@ -3,6 +3,8 @@ interface HomePageProps {
   onViewColleges: () => void;
 }
 
+import "./HomePage.css";
+
 function HomePage({
   onExploreEvents,
   onViewColleges,

@@ -66,7 +66,6 @@ function HomePage({
         <div className="feature-grid">
 
           <div className="feature-card">
-            <div className="feature-icon">�</div>
             <h3>Discover Events</h3>
             <p>
               Browse upcoming events and find activities

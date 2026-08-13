@@ -16,18 +16,16 @@ function HomePage({
       <section className="hero-section">
         <div className="hero-content">
           <span className="hero-tag">
-            🎓 CAMPUS EVENT ORGANIZER
+            CAMPUS EVENT ORGANIZER
           </span>
 
           <h1>
-            Discover What's Happening
-            <br />
-            <span>On Your Campus</span>
+            Discover What's Happening On Your Campus
           </h1>
 
           <p>
-            Find campus events, connect with your college community,
-            and never miss an exciting opportunity.
+            Find campus events and connect with your college community and
+            and never miss an cool opportunity.
           </p>
 
           <div className="hero-buttons">
@@ -61,24 +59,23 @@ function HomePage({
           <span>WHAT WE OFFER</span>
           <h2>Everything You Need for Campus Events</h2>
           <p>
-            Our platform makes it easy to discover, create,
-            and manage campus events.
+            Our website makes it easy to discover and create college events.
           </p>
         </div>
 
         <div className="feature-grid">
 
           <div className="feature-card">
-            <div className="feature-icon">📅</div>
+            <div className="feature-icon">�</div>
             <h3>Discover Events</h3>
             <p>
-              Browse upcoming campus events and find activities
+              Browse upcoming events and find activities
               that interest you.
             </p>
           </div>
 
           <div className="feature-card">
-            <div className="feature-icon">🏫</div>
+            <div className="feature-icon"></div>
             <h3>Explore Colleges</h3>
             <p>
               View colleges and discover events happening
@@ -87,7 +84,7 @@ function HomePage({
           </div>
 
           <div className="feature-card">
-            <div className="feature-icon">➕</div>
+            <div className="feature-icon"></div>
             <h3>Create Events</h3>
             <p>
               Organize your own campus event and share it
@@ -96,7 +93,7 @@ function HomePage({
           </div>
 
           <div className="feature-card">
-            <div className="feature-icon">👥</div>
+            <div className="feature-icon"></div>
             <h3>Join the Community</h3>
             <p>
               Connect with students and participate in

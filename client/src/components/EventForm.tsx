@@ -14,6 +14,11 @@ function EventForm({ token }: EventFormProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!token) {
+      setMessage("Error: You must be logged in to create an event");
+      return;
+    }
+
     setMessage("");
     setLoading(true);
 

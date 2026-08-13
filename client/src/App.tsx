@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 import HomePage from "./components/HomePage";
@@ -10,25 +10,60 @@ import LoginPage from "./components/LoginPage";
 function App() {
   const [page, setPage] = useState("home");
   const [token, setToken] = useState<string>("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Load token from localStorage on mount
+  useEffect(() => {
+    const savedToken = localStorage.getItem("authToken");
+    if (savedToken) {
+      setToken(savedToken);
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogin = (newToken: string) => {
+    setToken(newToken);
+    setIsLoggedIn(true);
+    localStorage.setItem("authToken", newToken);
+    setPage("home");
+  };
+
+  const handleLogout = () => {
+    setToken("");
+    setIsLoggedIn(false);
+    localStorage.removeItem("authToken");
+    setPage("home");
+  };
 
   return (
     <div className="app">
       <header className="navbar">
         <div className="logo" onClick={() => setPage("home")}>
-          🎓 Campus Events
+          Campus Events
         </div>
 
         <nav>
           <button onClick={() => setPage("home")}>Home</button>
           <button onClick={() => setPage("events")}>Events</button>
           <button onClick={() => setPage("colleges")}>Colleges</button>
-          <button onClick={() => setPage("create")}>Create Event</button>
-          <button
-            className="login-button"
-            onClick={() => setPage("login")}
-          >
-            Login
-          </button>
+          {isLoggedIn && (
+            <button onClick={() => setPage("create")}>Create Event</button>
+          )}
+          {isLoggedIn ? (
+            <div className="login-status">
+              <span>Logged In</span>
+              <button className="logout-button" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
+          ) : (
+            <button
+              className="login-button"
+              onClick={() => setPage("login")}
+            >
+              Login
+            </button>
+          )}
         </nav>
       </header>
 
@@ -44,21 +79,30 @@ function App() {
 
         {page === "colleges" && <Collegelist />}
 
-        {page === "create" && <EventForm token={token} />}
+        {page === "create" && (
+          isLoggedIn ? (
+            <EventForm token={token} />
+          ) : (
+            <div className="login-required">
+              <h2>Login Required</h2>
+              <p>You must be logged in to create an event.</p>
+              <button className="primary-button" onClick={() => setPage("login")}>
+                Go to Login
+              </button>
+            </div>
+          )
+        )}
 
         {page === "login" && (
           <LoginPage
-            onLogin={(t: string) => {
-              setToken(t);
-              setPage("home");
-            }}
+            onLogin={handleLogin}
           />
         )}
       </main>
 
       <footer className="footer">
         <div>
-          <h3>🎓 Campus Events</h3>
+          <h3>Campus Events</h3>
           <p>
             Discover and manage events happening on campuses.
           </p>

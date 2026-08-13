@@ -182,3 +182,158 @@
     border-right-color: var(--border);
   }
 }
+
+/* Navbar Styles */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #3790d4;
+  border-bottom: 3px solid #0ec6f5;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #ffffff;
+  transition: color 0.3s;
+}
+
+.logo:hover {
+  color: #66ccff;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.navbar button {
+  padding: 10px 16px;
+  background-color: #2d5a7b;
+  color: #ffffff;
+  border: 1px solid #0066cc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.navbar button:hover {
+  background-color: #0066cc;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.login-button {
+  background-color: #0066cc !important;
+  color: white !important;
+  border-color: #66ccff !important;
+}
+
+.login-button:hover {
+  background-color: #0052a3 !important;
+  border-color: #ffffff !important;
+}
+
+.login-status {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.login-status span {
+  color: #66ff99;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.logout-button {
+  background-color: #cc3333 !important;
+  color: white !important;
+  border-color: #ff6666 !important;
+}
+
+.logout-button:hover {
+  background-color: #aa0000 !important;
+  border-color: #ffffff !important;
+}
+
+main {
+  flex: 1;
+}
+
+.footer {
+  background-color: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.footer h3,
+.footer h4 {
+  margin: 0 0 16px 0;
+}
+
+.footer p {
+  margin: 8px 0;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s;
+}
+
+.footer p:hover {
+  color: #0066cc;
+}
+
+/* Login Required Message */
+.login-required {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 60px 40px;
+  text-align: center;
+  min-height: 400px;
+}
+
+.login-required h2 {
+  font-size: 32px;
+  color: #333;
+  margin: 0;
+}
+
+.login-required p {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+.primary-button {
+  padding: 12px 32px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.primary-button:hover {
+  background-color: #0052a3;
+}

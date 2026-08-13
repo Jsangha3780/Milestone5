@@ -22,13 +22,19 @@
   gap: 20px;
 }
 
+.hero-content h1 {
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
 .hero-buttons {
   display: flex;
   gap: 20px;
 }
 
 .collegestudent-image img {
-  width: 350px;
+  width: 450px;
   border-radius: 12px;
 }
 

@@ -10,7 +10,7 @@ Group 3 Members: Jashandeep Sangha, Aaron Sieunarine, Keegan Morris
 
 ### Environment (.env in express-api folder)
 ```
-JWT_SECRET=my-super-secret-key
+JWT_SECRET=my-super-secret-key (create a key)
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=your_password

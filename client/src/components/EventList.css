@@ -79,3 +79,62 @@
   font-size: 16px;
   color: #444;
 }
+
+/* Edit mode */
+.edit-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.edit-mode input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.edit-btn, .save-btn, .cancel-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #45a049;
+}
+
+.save-btn {
+  background-color: #2196F3;
+  color: white;
+  flex: 1;
+}
+
+.save-btn:hover {
+  background-color: #0b7dda;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+  flex: 1;
+}
+
+.cancel-btn:hover {
+  background-color: #da190b;
+}

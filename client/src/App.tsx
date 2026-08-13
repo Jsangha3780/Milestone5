@@ -75,7 +75,7 @@ function App() {
           />
         )}
 
-        {page === "events" && <EventList />}
+        {page === "events" && <EventList token={token} />}
 
         {page === "colleges" && <Collegelist />}
 

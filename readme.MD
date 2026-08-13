@@ -36,3 +36,17 @@ DB_PORT=3306
 - `/api/events` - Events
 - `/api/registrations` - Registrations
 - `/api/colleges` - Colleges
+
+
+## Create user
+using post man well backend is running
+
+Post http://localhost:3000/api/users
+{
+"email": "tri@example.com",
+"password": "MySecret123",
+"last_name": "Student",
+"college_id": 1
+}
+
+any email or password works.

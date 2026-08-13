@@ -47,9 +47,9 @@ function HomePage({
           </div>
         </div>
 
-        <div className="hero-image">
+        <div className="collegestudent-image">
           <img
-            src="/src/assets/hero.png"
+            src="/src/assets/collegestudents.png"
             alt="Campus event"
           />
         </div>
